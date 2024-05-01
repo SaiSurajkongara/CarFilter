@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="carApp">
+<head>
+    <title>Explore Cars</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="car.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+
+<body ng-controller="CarController">
+    <header class="header">
+        <nav class="nav">
+            <i class="uil uil-bars navOpenBtn"></i>
+            <a href="#" class="logo">
+                <img class="logo-img" src="assets/images/car logo.png">
+            </a>
+          
+            <ul class="nav-links">
+              <i class="uil uil-times navCloseBtn"></i>
+              <li><a href="#">Home</a></li>
+              <li><a href="file:///Users/suraj/Documents/SEM%204/Web%20tech%20project/about%20us.html">About Us</a></li>
+              <li><a href="file:///Users/suraj/Documents/SEM%204/Web%20tech%20project/Contactus.html">Contact Us</a></li>
+            </ul>
+          
+            <i class="uil uil-search search-icon" id="searchIcon"></i>
+            <div class="search-box">
+              <i class="uil uil-search search-icon"></i>
+              <input type="text" placeholder="Search here..." />
+            </div>
+          </nav>
+    </header>
+
+        <div class="backg">
+            <div class="para">
+                <h1>Find Your Perfect Vehicle: Tailored Car Selection for Every Need</h1>
+                <p>Welcome to our car selection platform, where finding the ideal vehicle for your needs has never been easier. Whether you're a daily commuter, a weekend adventurer, or a family on the move, our platform is designed to match you with the perfect vehicle. With a vast range of options from compact city cars to spacious SUVs, we understand that every customer is unique, and so are their requirements. Our intuitive search tools and expert recommendations ensure that you'll discover the vehicle that aligns perfectly with your lifestyle, budget, and preferences. Say goodbye to endless browsing and let us help you find your dream vehicle effortlessly. Start your journey with us today and experience the joy of driving the perfect vehicle tailored just for you.</p>
+            </div>
+        
+<div class="box">
+<div class="box-block">
+    <h2 class="box-block-h2">Find Your Car</h2>
+    <form ng-submit="filterCars()">
+    <div class="filters">
+        <br>
+        Select price:
+        <select  class="text-box" id="price" ng-model="selectedPrice">
+            <option value="">Any</option>
+            <option value="below15">Below 15 lakhs</option>
+            <option value="15to30">15 - 30 lakhs</option>
+            <option value="above30">Above 30 lakhs</option>
+        </select>
+Select Fuel Type
+        <select   class="text-box" id="fuel" ng-model="selectedFuelType">
+            <option value="">Any</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+        </select>
+        <br>
+        <input class="submit" type="submit" value="Submit">
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+    <div class="car-list">
+        <div class="card" ng-repeat="car in filteredCars">
+            <img ng-src="{{ car.image }}" alt="{{ car.name }}">
+            <div class="card-details"><h2>{{ car.name }}</h2>
+            <p>Price: {{ car.price }}</p>
+            <p>Fuel Type: {{ car.fuelType }}</p>
+            <p>{{car.mileage}} : {{car.engineDisplacement}} : {{car.seatingCapacity}}</p>
+           
+            <button onclick="booktestdrive()">Book a Ride</button>
+        </div>
+        </div>
+        <script>
+            function booktestdrive() {
+                alert("Your test drive has been successfully booked.");
+                 
+            }
+        </script>
+<script src="/Users/suraj/Documents/SEM 4/Web tech project/nav.js"></script>
+<script>
+    angular.module('carApp', [])
+    .controller('CarController', function($scope) {
+        $scope.cars = [
+    { name: 'Mahindra XUV300', image: 'assets/images/Mahindra_XUV300.jpg', price: '7.13 Lakh', fuelType: 'Petrol',   mileage: '18.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Tata Punch', image: 'assets/images/Tata-Punch-Offroad.jpg.avif', price: '6.13 Lakh', fuelType: 'Petrol',   mileage: '19.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Hyundai Creta', image: 'assets/images/creta-exterior-right-front-three-quarter-4.png.webp', price: '11.17 Lakh', fuelType: 'Petrol',  mileage: '17.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Honda City', image: 'assets/images/Honda_City_.avif', price: '21.16 Lakh', fuelType: 'Diesel',  mileage: '16.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Ford EcoSport', image: 'assets/images/Ford-EcoSport-Right-Front-Three-Quarter-159249.webp', price: '40.19 Lakh', fuelType: 'Diesel',  mileage: '20.00 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Swift', image: 'assets/images/maruti-swift-1633023074.jpg', price: '6.00 Lakh', fuelType: 'Petrol' ,  mileage: '22.39 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Maruti Wagon R', image: 'assets/images/maruti-suzuki-wagonr_827x510_81506418048.jpeg', price: '8.50 Lakh', fuelType: 'Petrol' ,  mileage: '19.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Tata Altroz', image: 'assets/images/i085rsa_1478501.jpg.webp', price: '6.65 - 10.80 Lakh', fuelType: 'Petrol',  mileage: '18.19 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Swift', image: 'assets/images/maruti-swift-1633023074.jpg', price: '8.00 Lakh', fuelType: 'Diesel',  mileage: '22.39 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Wagon R', image: 'assets/images/maruti-suzuki-wagonr_827x510_81506418048.jpeg', price: '11.50 Lakh', fuelType: 'Diesel',  mileage: '19.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Tata Altroz', image: 'assets/images/i085rsa_1478501.jpg.webp', price: '9.80 Lakh', fuelType: 'Diesel',  mileage: '18.59 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Mahindra Bolero', image: 'assets/images/bolero-exterior-right-front-three-quarter-2.jpeg.webp', price: '18.00 Lakh', fuelType: 'Diesel' ,  mileage: '18.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Maruti Alto', image: 'assets/images/maruti-alto.jpeg', price: '7.00 Lakh', fuelType: 'Diesel',  mileage: '18.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Baleno', image: 'assets/images/Baleno.webp', price: '10.76 Lakh', fuelType: 'Diesel',  mileage: '17.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Celerio', image: 'assets/images/celerio.jpeg', price: '8.46 Lakh', fuelType: 'Diesel',  mileage: '19.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Kia Sonet', image: 'assets/images/front-left-side-47.jpg.webp', price: '20 Lakh', fuelType: 'Diesel',  mileage: '15.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Tata Tiago', image: 'assets/images/Tata-Tiago-.webp', price: '7.71 Lakh', fuelType: 'Diesel',  mileage: '19.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Maruti Celerio', image: 'assets/images/celerio.jpeg', price: '6.46 Lakh', fuelType: 'Petrol',  mileage: '20.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Kia Sonet', image: 'assets/images/front-left-side-47.jpg.webp', price: '17 Lakh', fuelType: 'Petrol',  mileage: '15.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Tata Tiago', image: 'assets/images/Tata-Tiago-.webp', price: '5.71 Lakh', fuelType: 'Petrol' ,  mileage: '19.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater'},
+    { name: 'Toyota Innova Crysta', image: 'assets/images/innova-crysta.webp', price: '25.22 Lakh', fuelType: 'Petrol',  mileage: '10.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater' },
+    { name: 'Toyota Innova Hycross', image: 'assets/images/test-drive-img.jpg', price: '23.01 Lakh', fuelType: 'Petrol',  mileage: '25.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater' },
+    { name: 'MG Hector Plus', image: 'assets/images/hector-plus-.webp', price: '21.17 lakhs', fuelType: 'Petrol' ,  mileage: '11.12 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater'},
+    { name: 'Toyota Innova Crysta', image: 'assets/images/innova-crysta.webp', price: '28.27 Lakh', fuelType: 'Diesel',  mileage: '10.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater' },
+    { name: 'Toyota Innova Hycross', image: 'assets/images/test-drive-img.jpg', price: '29.25 Lakh', fuelType: 'Diesel',  mileage: '25.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater' },
+    { name: 'MG Hector Plus', image: 'assets/images/hector-plus-.webp', price: '27.49 lakhs', fuelType: 'Diesel',  mileage: '10.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '7 seater' },
+    { name: 'Honda City', image: 'assets/images/Honda_City_.avif', price: '20.27 Lakhs', fuelType: 'Diesel',  mileage: '16.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater' },
+    { name: 'Mahindra XUV300', image: 'assets/images/Mahindra_XUV300.jpg', price: '10.20 Lakh',fuelType: 'Diesel',  mileage: '18.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater'},
+    {
+        name: 'Hyundai Creta',
+        image: 'assets/images/2024-creta-4.jpg.avif',
+        price: '25.00 Lakh',
+        fuelType: 'Diesel',
+        mileage: '18.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater'
+    },
+    {
+        name: 'Mahindra Scorpio',
+        image: 'assets/images/scorpio-exterior-right-front-three-quarter-47.jpeg.webp',
+        price: '21.70 Lakh',
+        fuelType: 'Diesel',
+        mileage: '14.09 kmpl',
+        engineDisplacement: '2184 cc',
+        seatingCapacity: '7 seater'
+    },
+    {
+        name: 'Honda City',
+        image: 'assets/images/Honda_City_.avif',
+        price: '16.22 Lakhs',
+        fuelType: 'Petrol',
+        mileage: '19.09 kmpl',
+        engineDisplacement: '1498 cc',
+        seatingCapacity: '5 seater'
+    },
+    {
+        name: 'Hyundai Creta',
+        image: 'assets/images/2024-creta-4.jpg.avif',
+        price: '22.62 Lakh',
+        fuelType: 'Petrol',
+        mileage: '18.22 kmpl',
+        engineDisplacement: '1482 cc',
+        seatingCapacity: '5 seater'
+    },
+    {
+        name: 'Mahindra Scorpio',
+        image: 'assets/images/scorpio-exterior-right-front-three-quarter-47.jpeg.webp',
+        price: '17.08 Lakh',
+        fuelType: 'Petrol',
+        mileage: '14.09 kmpl',
+        engineDisplacement: '2184 cc',
+        seatingCapacity: '7 seater'
+    },
+    {
+        name: 'Mini Cooper',
+        image: 'assets/images/mini-cooper.jpg',
+        price: '40.69 lakh',
+        fuelType: 'Petrol',
+        mileage: '17.44kpl',
+        engineDisplacement: '1998cc',
+        seatingCapacity: '4 Seater'
+    },
+    {
+        name: 'Skoda Kodiaq',
+        image: 'assets/images/kodiaq-exterior-right-front-three-quarter-3.jpeg.webp',
+        price: '43.45 lakh',
+        fuelType: 'Petrol',
+        mileage: '12.78kpl',
+        engineDisplacement: '1984cc',
+        seatingCapacity: '7 seater'
+    },
+    {
+        name: 'Mercedes-Benz GLA',
+        image: 'assets/images/GLA.webp',
+        price: '56.42 lakh',
+        fuelType: 'Petrol',
+        mileage: '10.09 kmpl',
+        engineDisplacement: '1332cc',
+        seatingCapacity: '5 seater'
+    },
+    {
+        name: 'Mini Cooper',
+        image: 'assets/images/mini-cooper.jpg',
+        price: '43.69 lakh',
+        fuelType: 'Diesel',
+        mileage: '17.44kpl',
+        engineDisplacement: '1998cc',
+        seatingCapacity: '4 Seater'
+    },
+    {
+        name: 'Skoda Kodiaq',
+        image: 'assets/images/kodiaq-exterior-right-front-three-quarter-3.jpeg.webp',
+        price: '45.45 lakh',
+        fuelType: 'Diesel',
+        mileage: '12.78kpl',
+        engineDisplacement: '1984cc',
+        seatingCapacity: '7 seater'
+    },
+    {
+        name: 'Mercedes-Benz GLA',
+        image: 'assets/images/GLA.webp',
+        price: '57.42 lakh',
+        fuelType: 'Diesel',
+        mileage: '10.09 kmpl',
+        engineDisplacement: '1332cc',
+        seatingCapacity: '5 seater'
+    },
+    {
+        name: "Toyota Fortuner",
+        price: "Rs. 35.69 lakh",
+        mileage: "17.44 kpl",
+        engineDisplacement: "1998cc",
+        seatingCapacity: "7 Seater",
+        fuelType: "Petrol",
+        image: "assets/images/fortuner-exterior-right-front-three-quarter-20.webp"
+    },
+    {
+        name: "MG Gloster",
+        price: "Rs. 33.45 lakh",
+        mileage: "12.78 kpl",
+        engineDisplacement: "1984cc",
+        seatingCapacity: "7 Seater",
+        fuelType: "Petrol",
+        image: "assets/images/1685355380-6184.jpg"
+    },
+    {
+        name: "Hyundai Tucson",
+        price: "Rs. 32.42 lakh",
+        mileage: "10.09 kmpl",
+        engineDisplacement: "1332cc",
+        seatingCapacity: "5 seater",
+        fuelType: "Petrol",
+        image: "assets/images/fortuner-exterior-right-front-three-quarter-20.webp"
+    },
+    {
+        name: "Toyota Fortuner",
+        price: "Rs. 38.69 lakh",
+        mileage: "17.44 kpl",
+        engineDisplacement: "1998cc",
+        seatingCapacity: "7 Seater",
+        fuelType: "Diesel",
+        image: "assets/images/fortuner-exterior-right-front-three-quarter-20.webp"
+    },
+    {
+        name: "MG Gloster",
+        price: "Rs. 36.45 lakh",
+        mileage: "12.78 kpl",
+        engineDisplacement: "1984cc",
+        seatingCapacity: "7 seater",
+        fuelType: "Diesel",
+        image: "assets/images/1685355380-6184.jpg"
+    },
+    {
+        name: "Hyundai Tucson",
+        price: "Rs. 35.42 lakh",
+        mileage: "10.09 kmpl",
+        engineDisplacement: "1332cc",
+        seatingCapacity: "5 seater",
+        fuelType: "Diesel",
+        image: "assets/images/Tucson-gallery-4.jpg"
+    },
+    {
+        name: "Audi Q3",
+        price: "Rs. 43.69 lakh",
+        mileage: "17.44 kpl",
+        engineDisplacement: "1998cc",
+        seatingCapacity: "5 Seater",
+        fuelType: "Diesel",
+        image: "assets/images/q3.jpg"
+    },
+    {
+        name: "Jeep Meridian",
+        price: "Rs. 39.45 lakh",
+        mileage: "12.78 kpl",
+        engineDisplacement: "1984cc",
+        seatingCapacity: "7 seater",
+        fuelType: "Diesel",
+        image: "assets/images/2zvvm3a_1581299.webp"
+    },
+    {
+        name: "Isuzu MU-X",
+        price: "Rs. 38.42 lakh",
+        mileage: "10.09 kmpl",
+        engineDisplacement: "1332cc",
+        seatingCapacity: "5 seater",
+        fuelType: "Diesel",
+        image: "assets/images/front-left-side-47.webp"
+    },
+    {
+        name: "Audi Q3",
+        price: "Rs. 40.69 lakh",
+        mileage: "17.44 kpl",
+        engineDisplacement: "1998cc",
+        seatingCapacity: "5 Seater",
+        fuelType: "Petrol",
+        image: "assets/images/q3.jpg"
+    },
+    {
+        name: "Jeep Meridian",
+        price: "Rs. 36.45 lakh",
+        mileage: "12.78 kpl",
+        engineDisplacement: "1984cc",
+        seatingCapacity: "7 seater",
+        fuelType: "Petrol",
+        image: "assets/images/2zvvm3a_1581299.webp"
+    },
+    {
+        name: "Isuzu MU-X",
+        price: "Rs. 35.42 lakh",
+        mileage: "10.09 kmpl",
+        engineDisplacement: "1332cc",
+        seatingCapacity: "7 seater",
+        fuelType: "Petrol",
+        image: "assets/images/front-left-side-47.webp"
+    }
+
+]
+
+        $scope.filteredCars = $scope.cars;
+        $scope.filterCars = function() {
+        $scope.$watchGroup(['selectedPrice', 'selectedFuelType'], function(newValues, oldValues) {
+            var selectedPrice = newValues[0];
+            var selectedFuelType = newValues[1];
+
+            $scope.filteredCars = $scope.cars.filter(function(car) {
+                if (selectedPrice && selectedPrice !== 'Any' && selectedFuelType && selectedFuelType !== 'Any') {
+                    return ((selectedPrice === 'below15' && parseFloat(car.price) < 15) ||
+                            (selectedPrice === '15to30' && parseFloat(car.price) >= 15 && parseFloat(car.price) <= 30) ||
+                            (selectedPrice === 'above30' && parseFloat(car.price) > 30)) &&
+                           (car.fuelType === selectedFuelType);
+                } else if (selectedPrice && selectedPrice !== 'Any') {
+                    return (selectedPrice === 'below15' && parseFloat(car.price) < 15) ||
+                           (selectedPrice === '15to30' && parseFloat(car.price) >= 15 && parseFloat(car.price) <= 30) ||
+                           (selectedPrice === 'above30' && parseFloat(car.price) > 30);
+                } else if (selectedFuelType && selectedFuelType !== 'Any') {
+                    return car.fuelType === selectedFuelType;
+                } else {
+                    return true;
+                }
+            });
+        });
+
+    };
+});
+
+</script>
+<footer>
+    <p>&copy; 2024 Car Filter. All rights reserved. @SurajKongara 2024</p>
+</footer>
+</body>
+</html>

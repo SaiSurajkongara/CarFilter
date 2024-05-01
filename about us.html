@@ -1,0 +1,233 @@
+<html>
+<head>
+    <title>About Us - Car Filtering Website</title>
+   <style>
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%; /* Adjust width as needed */
+        z-index: 1000; /* Ensure it's above other content */
+    
+}
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 200px;
+  background: black;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.nav,
+.nav .nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav {
+  justify-content: space-between;
+}
+.nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.nav .logo {
+  font-size: 22px;
+  font-weight: 500;
+}
+.nav .nav-links {
+  column-gap: 20px;
+  list-style: none;
+}
+.nav .nav-links a {
+  transition: all 0.2s linear;
+}
+.nav.openSearch .nav-links a {
+  opacity: 0;
+  pointer-events: none;
+}
+.nav .search-icon {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.nav .search-box {
+  position: absolute;
+  right: 250px;
+  height: 45px;
+  max-width: 555px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+.nav.openSearch .search-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: white;
+  transform: translateY(-50%);
+}
+.search-box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 6px;
+  background-color: #353842;
+  padding: 0 15px 0 45px;
+}
+
+.nav .navOpenBtn,
+.nav .navCloseBtn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav .navOpenBtn,
+  .nav .navCloseBtn {
+    display: block;
+  }
+  .nav {
+    padding: 15px 20px;
+  }
+  .nav .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    max-width: 280px;
+    width: 100%;
+    padding-top: 100px;
+    row-gap: 30px;
+    flex-direction: column;
+    background-color: black;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    z-index: 100;
+  }
+  .nav.openNav .nav-links {
+    left: 0;
+  }
+  .nav .navOpenBtn {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav .navCloseBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav .search-box {
+    top: calc(100% + 10px);
+    max-width: calc(100% - 20px);
+    right: 50%;
+    transform: translateX(50%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+.logo-img{
+  max-width: 100px;
+}
+.backg {
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/Users/suraj/Downloads/miniature-mini-cooper-car-hhg22tiwsptzr151.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+  padding-bottom: 70px;
+  margin-top: 112px;
+
+  /* Filter: blur(2px); Uncomment this line if you want to apply blur effect */
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.about {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <i class="uil uil-bars navOpenBtn"></i>
+            <a href="#" class="logo">
+                <img class="logo-img" src="assets/images/car logo.png">
+            </a>
+          
+            <ul class="nav-links">
+              <i class="uil uil-times navCloseBtn"></i>
+              <li><a href="file:///Users/suraj/Documents/SEM%204/Web%20tech%20project/brand-tata.html">Home</a></li>
+              <li><a href="file:///Users/suraj/Documents/SEM%204/Web%20tech%20project/about%20us.html">About Us</a></li>
+              <li><a href="file:///Users/suraj/Documents/SEM%204/Web%20tech%20project/Contactus.html">Contact Us</a></li>
+            </ul>
+          
+            <i class="uil uil-search search-icon" id="searchIcon"></i>
+            <div class="search-box">
+              <i class="uil uil-search search-icon"></i>
+              <input type="text" placeholder="Search here..." />
+            </div>
+          </nav>
+    </header>
+
+    <section class="about">
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <br><br>
+        <p>Welcome to Car Filter, your ultimate destination for finding the perfect car for your needs. At Car Filter, we strive to make the car buying process as easy and convenient as possible.</p>
+        <p>Our website allows you to filter cars based on price and fuel type, so you can quickly find the vehicles that match your criteria. Whether you're looking for an affordable compact car or a luxurious SUV, we've got you covered.</p>
+        <p>With our user-friendly interface and comprehensive search options, you'll be able to browse through thousands of cars with ease. Our team of experts is also here to help answer any questions you may have and provide personalized recommendations based on your preferences.</p>
+        <p>So why wait? Start exploring our vast selection of cars today and find the perfect vehicle for you!</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Car Filter. All rights reserved. @SurajKongara 2024</p>
+    </footer>
+</body>
+</html>
